@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Data
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "pauta_id"})
+)
 public class Voto {
 
     @Id
@@ -17,10 +20,9 @@ public class Voto {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pauta_id", unique = true)
+    @JoinColumn(name = "pauta_id")
     private Pauta pauta;
 
-    @Column(unique = true)
     private String cpf;
 
     @Enumerated(EnumType.STRING)

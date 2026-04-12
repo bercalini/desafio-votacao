@@ -25,7 +25,7 @@ public class Pauta {
     private String titulo;
 
     @CreationTimestamp
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private LocalDateTime dataCadastro;
 
 }
