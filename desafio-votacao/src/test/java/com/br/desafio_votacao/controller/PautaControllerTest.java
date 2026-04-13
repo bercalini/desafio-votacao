@@ -30,11 +30,10 @@ class PautaControllerTest {
     }
 
     @Test
+    @DisplayName("deve testar a busca da pauta por id")
     void deve_buscar_pauta_por_id() throws Exception {
-
         mockMvc.perform(get("/v1/pautas/buscar/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1));
     }
-
 }

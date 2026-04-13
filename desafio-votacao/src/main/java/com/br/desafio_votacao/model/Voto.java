@@ -3,18 +3,17 @@ package com.br.desafio_votacao.model;
 import com.br.desafio_votacao.enums.OpcaoVoto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "pauta_id"}))
 @Data
-@Table(
-        uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "pauta_id"})
-)
 public class Voto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,5 +26,4 @@ public class Voto {
 
     @Enumerated(EnumType.STRING)
     private OpcaoVoto opcaoVoto;
-
 }
