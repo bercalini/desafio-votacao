@@ -13,21 +13,20 @@ import com.br.desafio_votacao.model.Pauta;
 import com.br.desafio_votacao.model.SessaoVotacao;
 import com.br.desafio_votacao.model.Voto;
 import com.br.desafio_votacao.repository.VotoRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.openMocks;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class VotoServiceTest {
 
     @InjectMocks
@@ -44,11 +43,6 @@ class VotoServiceTest {
 
     @Mock
     private CpfClientFake cpfClientFake;
-
-    @BeforeEach
-    void setup() {
-        openMocks(this);
-    }
 
     @Test
     @DisplayName("Deve votar com sucesso")

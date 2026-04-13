@@ -7,12 +7,12 @@ import com.br.desafio_votacao.model.Pauta;
 import com.br.desafio_votacao.model.SessaoVotacao;
 import com.br.desafio_votacao.repository.PautaRepository;
 import com.br.desafio_votacao.repository.SessaoRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -20,9 +20,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.openMocks;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class SessaoServiceTest {
 
     @InjectMocks
@@ -36,11 +35,6 @@ class SessaoServiceTest {
 
     @Mock
     private PautaRepository pautaRepository;
-
-    @BeforeEach
-    void setup() {
-        openMocks(this);
-    }
 
     @Test
     @DisplayName("Deve testar abrir sessao")
