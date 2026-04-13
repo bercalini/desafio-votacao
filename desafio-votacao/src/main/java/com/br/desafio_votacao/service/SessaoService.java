@@ -3,6 +3,7 @@ package com.br.desafio_votacao.service;
 import com.br.desafio_votacao.DTO.SessaoVotacaoDTO;
 import com.br.desafio_votacao.execeptions.PautaNaoEncontradaException;
 import com.br.desafio_votacao.execeptions.SessaoAbertaException;
+import com.br.desafio_votacao.execeptions.SessaoNaoEncontradaException;
 import com.br.desafio_votacao.mapper.SessaoVotacaoMapper;
 import com.br.desafio_votacao.model.Pauta;
 import com.br.desafio_votacao.model.SessaoVotacao;
@@ -14,8 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-import static com.br.desafio_votacao.config.Constantes.PAUTA_NAO_ENCONTRADA;
-import static com.br.desafio_votacao.config.Constantes.SESSAO_ABERTA;
+import static com.br.desafio_votacao.config.Constantes.*;
 import static java.lang.String.format;
 
 @Service
@@ -24,7 +24,7 @@ public class SessaoService {
     private SessaoRepository sessaoRepository;
     private PautaRepository pautaRepository;
     private SessaoVotacaoMapper sessaoVotacaoMapper;
-    private static final Logger log = LoggerFactory.getLogger(SessaoService.class);
+        private static final Logger log = LoggerFactory.getLogger(SessaoService.class);
 
     public SessaoService(final SessaoRepository sessaoRepository, final PautaRepository pautaRepository,
                          final SessaoVotacaoMapper sessaoVotacaoMapper) {
@@ -52,6 +52,11 @@ public class SessaoService {
         sessao.setDataFim(inicio.plusMinutes(tempo));
 
         return sessaoVotacaoMapper.toDTO(sessaoRepository.save(sessao));
+    }
+
+    public SessaoVotacao buscarPorPauta(Long pautaId) {
+        return sessaoRepository.findByPautaId(pautaId)
+                .orElseThrow(() -> new SessaoNaoEncontradaException(format(SESSAO_NAO_ENCONTRADA, pautaId)));
     }
 
     private Pauta buscarPorId(Long pautaId) {

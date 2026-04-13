@@ -18,6 +18,6 @@ public class VotoInput {
 
     private OpcaoVoto opcaoVoto;
 
-    private VotoPautaInput voto;
+    private VotoPautaInput pauta;
 
 }
