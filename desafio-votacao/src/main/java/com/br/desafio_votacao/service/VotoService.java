@@ -69,7 +69,7 @@ public class VotoService {
         log.info("Verificando o cpf : {}", cpf);
 
         try {
-            StatusCpf status = cpfClientFake.validar(cpf);
+            var status = cpfClientFake.validar(cpf);
 
             if (status == StatusCpf.UNABLE_TO_VOTE) {
                 throw new BusinessException("CPF não está habilitado para votar");
