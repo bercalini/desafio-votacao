@@ -1,6 +1,6 @@
 package com.br.desafio_votacao.DTO;
 
-public record ResultadoDTO(long totalSim,
-                           long totalNao,
+public record ResultadoDTO(Long totalSim,
+                           Long totalNao,
                            String resultado) {
 }
